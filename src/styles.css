@@ -2452,3 +2452,254 @@ dialog .section-heading {
     display: none;
   }
 }
+
+/* PRD additions reuse the existing cards, colors, and responsive spacing. */
+.optional {
+  font-weight: 400;
+  color: #706078;
+  font-size: 10px;
+  margin-left: 7px;
+}
+.form-fields details > summary,
+.form-grid details > summary {
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6a51bb;
+  padding: 10px 0;
+}
+.form-fields details > div {
+  margin-top: 15px;
+}
+.public-review {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+.public-review > h3 {
+  font-size: 19px;
+}
+.public-review .submission-preview {
+  max-height: 420px;
+  overflow: auto;
+}
+.public-review details {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+}
+.public-review details summary {
+  cursor: pointer;
+  font-size: 12px;
+  color: #6a51bb;
+}
+.public-review .form-fields {
+  margin-top: 15px;
+}
+.management-link {
+  width: 100%;
+  text-align: left;
+}
+.management-link small {
+  font-weight: 400;
+  display: block;
+  margin-top: 8px;
+  color: #706078;
+}
+.management-card,
+.reminder-card {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+}
+.management-card details summary {
+  cursor: pointer;
+  color: #6a51bb;
+  font-weight: 600;
+}
+.management-card details > .form-fields {
+  margin-top: 20px;
+}
+.management-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.management-actions .button {
+  font-size: 11px;
+}
+.narrow > .form-card + .form-card {
+  margin-top: 24px;
+}
+.narrow > form.form-card > label {
+  margin-bottom: 18px;
+}
+.narrow > form.form-card > .button {
+  margin-top: 8px;
+}
+.reminder-card pre {
+  font: inherit;
+  font-size: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.simulation-controls {
+  border: 1px dashed #c5b7d8;
+  border-radius: 9px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.synthesis-panel {
+  border: 1px solid #e0d5ee;
+  border-radius: 11px;
+  background: #f5f1fa;
+  padding: 23px;
+  margin-bottom: 23px;
+  min-width: 0;
+}
+.synthesis-panel h2 {
+  font-size: 22px;
+}
+.synthesis-panel > .section-heading {
+  margin-bottom: 12px;
+}
+.synthesis-panel > .button {
+  margin-top: 18px;
+  font-size: 11px;
+}
+.synthesis-result {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 20px;
+}
+.synthesis-counts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.synthesis-counts h3 {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.synthesis-result details {
+  border-top: 1px solid #ded3e8;
+  padding-top: 12px;
+  font-size: 12px;
+}
+.synthesis-result summary {
+  cursor: pointer;
+  color: #655079;
+  font-weight: 600;
+}
+.synthesis-result li {
+  font-size: 12px;
+  color: #706078;
+}
+.synthesis-result .notice {
+  font-size: 11px;
+}
+.source-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  font-size: 10px;
+  color: #655079;
+}
+.source-links a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.helpful-panel {
+  margin-top: 20px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 20px;
+  background: #fff;
+}
+.helpful-panel h3 {
+  font-size: 16px;
+  margin-bottom: 13px;
+}
+.helpful-panel > p {
+  font-size: 12px;
+  display: flex;
+  gap: 8px;
+}
+.helpful-options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.helpful-options .button {
+  font-size: 11px;
+  padding: 8px 18px;
+}
+.helpful-options .button[aria-pressed="true"] {
+  background: #eee7f7;
+  border-color: #6a51bb;
+}
+.helpful-panel form > label {
+  font-size: 11px;
+}
+.helpful-panel form > .button {
+  font-size: 11px;
+  margin-top: 12px;
+}
+.footer-top > div:last-child {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 60%;
+}
+.submission-preview p {
+  overflow-wrap: anywhere;
+}
+.simulation-controls input {
+  min-width: 0;
+}
+.management-card .badge {
+  white-space: nowrap;
+}
+.form-card,
+.synthesis-panel {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 760px) {
+  .synthesis-panel {
+    padding: 18px;
+  }
+  .synthesis-panel h2 {
+    font-size: 21px;
+  }
+  .synthesis-counts {
+    grid-template-columns: 1fr;
+  }
+  .management-card .section-heading {
+    flex-wrap: wrap;
+  }
+  .footer-top > div:last-child {
+    max-width: 45%;
+  }
+  .management-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .management-actions .button {
+    width: 100%;
+  }
+  .public-review .submission-preview {
+    max-height: 340px;
+  }
+}
+@media print {
+  .helpful-panel,
+  .synthesis-panel,
+  .simulation-controls {
+    display: none !important;
+  }
+}

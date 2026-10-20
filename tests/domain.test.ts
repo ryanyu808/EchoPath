@@ -51,14 +51,14 @@ describe("experience discovery", () => {
   });
 });
 describe("validation and privacy", () => {
-  it("rejects missing content, missing consent and unnamed display names", () => {
+  it("rejects missing content, supports private consent, and validates legacy names", () => {
     expect(submissionSchema.safeParse({}).success).toBe(false);
     expect(
       submissionSchema.safeParse({
         ...demoExperiences[0],
         consent_to_publish: false,
       }).success,
-    ).toBe(false);
+    ).toBe(true);
     expect(
       submissionSchema.safeParse({
         ...demoExperiences[0],
@@ -74,7 +74,7 @@ describe("validation and privacy", () => {
         contributor_display_name: "Alex Sample",
         anonymity_preference: "First name only",
       }),
-    ).toBe("Alex");
+    ).toBe("Anonymous contributor");
     expect(displayName(demoExperiences[0])).toBe("Anonymous contributor");
   });
   it("validates AI extraction output and preserves literal evidence in templates", () => {

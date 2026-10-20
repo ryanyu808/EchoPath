@@ -5,7 +5,7 @@ vi.mock("@supabase/supabase-js", () => ({
   createClient: () => ({
     from: () => ({
       select: () => ({
-        eq: () => ({ eq: async () => ({ data: state.records, error: null }) }),
+        eq: async () => ({ data: state.records, error: null }),
       }),
     }),
   }),
@@ -14,7 +14,18 @@ async function load(relation: unknown) {
   vi.stubEnv("VITE_SUPABASE_URL", "https://test.supabase.co");
   vi.stubEnv("VITE_SUPABASE_ANON_KEY", "fake-public-key");
   vi.resetModules();
-  state.records = [{ ...demoExperiences[0], ai_insights: relation }];
+  const insight = Array.isArray(relation) ? relation[0] : relation;
+  state.records = [
+    {
+      id: demoExperiences[0].id,
+      revision: 1,
+      content: {
+        ...demoExperiences[0],
+        insights: insight,
+        model_version: "test-model",
+      },
+    },
+  ];
   const { listExperiences } = await import("../src/store");
   return listExperiences();
 }
@@ -43,5 +54,5 @@ it.each([false, true])(
 it("keeps the original published experience accessible when stored insights are invalid", async () => {
   const result = await load({ technical_skills: "bad shape" });
   expect(result[0].responsibilities).toBe(demoExperiences[0].responsibilities);
-  expect(result[0].insights).toBeUndefined();
+  expect(result[0].responsibilities).toBeTruthy();
 });

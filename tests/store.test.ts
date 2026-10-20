@@ -6,6 +6,8 @@ import {
   sendFeedback,
   submitExperience,
   track,
+  approveDemo,
+  publicCandidate,
 } from "../src/store";
 beforeEach(() => localStorage.clear());
 it("persists a local submission once and sanitizes identity", async () => {
@@ -13,8 +15,15 @@ it("persists a local submission once and sanitizes identity", async () => {
     ...demoExperiences[0],
     contributor_display_name: "Private Name",
   };
-  await submitExperience(input, "test-id");
-  await submitExperience(input, "test-id");
+  const options = {
+    token: "a".repeat(64),
+    publicVersion: publicCandidate(input),
+    reviewed: true,
+  };
+  await submitExperience(input, "test-id", options);
+  await submitExperience(input, "test-id", options);
+  expect(await listExperiences()).toHaveLength(10);
+  await approveDemo("test-id", options.token);
   const entries = await listExperiences();
   expect(entries).toHaveLength(11);
   expect(entries[0].contributor_display_name).toBe("");
@@ -49,7 +58,11 @@ it("reports browser storage failures instead of claiming a save", async () => {
   });
   try {
     await expect(
-      submitExperience(demoExperiences[0], "failed-id"),
+      submitExperience(demoExperiences[0], "failed-id", {
+        token: "a".repeat(64),
+        publicVersion: publicCandidate(demoExperiences[0]),
+        reviewed: true,
+      }),
     ).rejects.toThrow("Browser storage is unavailable");
   } finally {
     spy.mockRestore();

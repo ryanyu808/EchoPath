@@ -1,3 +1,4 @@
+import { ManagePage, RemindersPage } from "./enhancements";
 import React, { Component, useEffect, useState } from "react";
 
 import { Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
@@ -228,6 +229,8 @@ export default function App() {
           <Route path="/share" element={<Share />} />
           <Route path="/roadmap" element={<RoadmapPage />} />
           <Route path="/about" element={<About />} />
+          <Route path="/manage" element={<ManagePage />} />
+          <Route path="/reminders" element={<RemindersPage />} />
           <Route
             path="*"
             element={
@@ -248,6 +251,8 @@ export default function App() {
             </div>
             <div>
               <Link to="/about">Our story</Link>
+              <Link to="/reminders">Reminders</Link>
+              <Link to="/manage">Manage contribution</Link>
               <button
                 onClick={() => {
                   track("feedback_open");

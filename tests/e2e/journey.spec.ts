@@ -57,10 +57,19 @@ test("complete demo journey: landing, search, detail, roadmap, contribution, fee
   for (let i = 0; i < 3; i++)
     await page.getByRole("button", { name: "Continue", exact: true }).click();
   await page
+    .getByRole("checkbox", { name: /I consent to anonymous publication/ })
+    .check();
+  await page
     .getByRole("button", { name: "Submit experience", exact: true })
     .click();
-  await expect(page.getByText("Consent is required to publish.")).toBeVisible();
-  await page.getByRole("checkbox", { name: /I consent/ }).check();
+  await expect(
+    page.getByText(
+      "Review the anonymized public version before requesting publication.",
+    ),
+  ).toBeVisible();
+  await page
+    .getByRole("checkbox", { name: /I reviewed this public version/ })
+    .check();
   await page
     .getByRole("button", { name: "Submit experience", exact: true })
     .click();
@@ -68,7 +77,7 @@ test("complete demo journey: landing, search, detail, roadmap, contribution, fee
     page.getByRole("heading", { name: "Your local demo submission is saved." }),
   ).toBeVisible();
   await page
-    .getByRole("link", { name: "See experience & template insights" })
+    .getByRole("button", { name: "Simulate approval & view insights" })
     .click();
   await expect(
     page.getByText("Browser-local submission", { exact: true }),
@@ -122,7 +131,15 @@ test("all fictional detail routes, empty states, about, and responsive layout", 
   await expect(
     page.getByRole("heading", { name: /Good advice shouldn’t/ }),
   ).toBeVisible();
-  for (const route of ["/", "/experiences", "/share", "/roadmap", "/about"]) {
+  for (const route of [
+    "/",
+    "/experiences",
+    "/share",
+    "/roadmap",
+    "/about",
+    "/reminders",
+    "/manage",
+  ]) {
     await page.goto(route);
     expect(
       await page.evaluate(
