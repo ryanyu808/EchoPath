@@ -195,7 +195,7 @@ function Hero() {
           className="lp-checks lp-fade"
           style={{ "--i": 8 } as React.CSSProperties}
         >
-          {["Real student stories", "Skills & lessons", "Weekly roadmap"].map(
+          {["Real student stories", "Skills & lessons", "Learning calendar"].map(
             (t) => (
               <li key={t}>
                 <Check size={13} />
